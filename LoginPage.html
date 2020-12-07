@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+      #div1 {
+        width: 30%;
+        height: 200px;
+        background-color: lightgray;
+        position: absolute;
+        border-radius: 10px;
+        left: 35%;
+        top: 25%;
+      }
+
+      #kullaniciAdi {
+        width: 150px;
+        height: 30px;
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+
+      #parola {
+        width: 150px;
+        height: 30px;
+        margin-left: 30px;
+        margin-top: 20px;
+      }
+      #btn {
+        width: 273px;
+        height: 30px;
+        margin-left: 60px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <label style="margin-left: 60px" for="kullaniciAdi">User Name:</label>
+      <input id="kullaniciAdi" type="text" />
+
+      <label style="margin-left: 60px" for="parola">Password:</label>
+      <input id="parola" type="password">
+      <!-- <input id="parola" type="password" /> -->
+      <br /><br />
+
+      <button onclick="girisOnayi()" id="btn">Sign In</button>
+    </div>
+
+    <img src="https://cdn.pixabay.com/photo/2020/04/30/15/34/code-5113374_960_720.jpg" id="img" height="607" width="1307" />
+
+    <script>
+      var text;
+
+      function ResimYarat() {
+        var a = ["https://cdn.pixabay.com/photo/2016/11/30/20/58/programming-1873854_960_720.png", "https://cdn.pixabay.com/photo/2014/12/29/17/39/code-583073_960_720.jpg", "https://cdn.pixabay.com/photo/2016/06/29/09/29/code-1486361_960_720.jpg", "https://cdn.pixabay.com/photo/2018/01/17/20/22/analytics-3088958_960_720.jpg", "https://cdn.pixabay.com/photo/2020/04/30/15/34/code-5113374_960_720.jpg"];
+        text = "";
+
+        var random = Math.round(Math.random() * 4);
+        text = a[random];
+      }
+
+      setInterval(function () {
+        ResimYarat();
+        document.getElementById("img").src = text;
+      }, 2000);
+
+      var kullanicilar = [
+        { kullaniciAdi: "admin", parola: "admin" },
+        { kullaniciAdi: "javascript", parola: "1234" },
+      ];
+
+      var girilenKullaniciAdi;
+      var girilenParola;
+      var x;
+
+      function kontrolEt() {
+        girilenKullaniciAdi = document.getElementById("kullaniciAdi").value;
+        girilenParola = document.getElementById("parola").value;
+        for (x of kullanicilar) {
+          if (
+            x.kullaniciAdi == girilenKullaniciAdi &&
+            x.parola == girilenParola
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+
+      function girisOnayi() {
+        kontrolEt();
+        if (kontrolEt()) {
+          window.open("http://google.com", "_self");
+        } else {
+          alert("Hatalı Giriş!");
+          document.getElementById("kullaniciAdi").value = "";
+          document.getElementById("parola").value = "";
+        }
+      }
+    </script>
+  </body>
+</html>
